@@ -2,6 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -21,7 +22,7 @@ const Header = () => {
           <Nav className=" mx-auto">
             <Nav.Link href="#feat">Home</Nav.Link>
             <Nav.Link href="#features">Courses</Nav.Link>
-            <Nav.Link href="#pricing">Blog</Nav.Link>
+            <Link to="/blog">Blog</Link>
             <Nav.Link href="#p">FAQ</Nav.Link>
             <Nav.Link href="#pr">Theme</Nav.Link>
           </Nav>
