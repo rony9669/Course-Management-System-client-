@@ -26,9 +26,11 @@ const Header = () => {
             <Nav.Link href="#pr">Theme</Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">More deets</Nav.Link>
+            <Nav.Link href="#deets" title="User NAME">
+              User picture
+            </Nav.Link>
             <Nav.Link eventKey={2} href="#memes">
-              Dank memes
+              Logout
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
