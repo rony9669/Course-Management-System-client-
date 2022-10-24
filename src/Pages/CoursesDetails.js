@@ -7,13 +7,14 @@ import { Row } from "react-bootstrap";
 
 const CoursesDetails = (props) => {
   console.log(props.course.name);
-  const { name, img } = props.course;
+  const { name, img, time } = props.course;
   return (
     <div>
       <Card style={{ width: "400px", margin: "30px" }}>
         <Card.Img style={{ height: "300px" }} variant="top" src={img} />
         <Card.Body>
-          <Card.Title>{name}</Card.Title>
+          <Card.Title>Course Title: {name}</Card.Title>
+          <Card.Title>Course Duration: {time}</Card.Title>
 
           <Button variant="primary">Go somewhere</Button>
         </Card.Body>
