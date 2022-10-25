@@ -6,8 +6,10 @@ import Courses from "../Pages/Courses/Courses";
 import FaqPage from "../Pages/FaqPage/FaqPage";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
+import Register from "../Pages/Login/Register/Register";
 import PremiumAccess from "../Pages/PremiumAccess/PremiumAccess";
 import ErrorPage from "../Pages/Shared/ErrorPage/ErrorPage";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -36,7 +38,11 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/premiumAccess",
-        element: <PremiumAccess></PremiumAccess>,
+        element: (
+          <PrivateRoute>
+            <PremiumAccess></PremiumAccess>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/blog",
@@ -49,6 +55,10 @@ export const routes = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
       },
     ],
   },

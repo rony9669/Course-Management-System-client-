@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import "../Login.css";
+import { Button, Image } from "react-bootstrap";
+import { Form } from "react-bootstrap";
+import { FaFacebook, FaGithub, FaGoogle, FaTwitter } from "react-icons/fa";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const [error, setError] = useState("");
@@ -23,7 +24,7 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        // console.log(user);
         setError("");
         form.reset();
         handleUpdateUserProfile(name, photoURL);
@@ -58,51 +59,97 @@ const Register = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Your Name</Form.Label>
-        <Form.Control name="name" type="text" placeholder="Your Name" />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Photo URL</Form.Label>
-        <Form.Control name="photoURL" type="text" placeholder="Phot URL" />
-      </Form.Group>
+    <div>
+      <div className="vh-100">
+        <div className="container-fluid h-custom">
+          <div className="row d-flex justify-content-center align-items-center h-100">
+            <div className="col-md-9 col-lg-6 col-xl-5">
+              <Image
+                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                className="img-fluid"
+                alt="Sample image"
+              />
+            </div>
+            <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+              <>
+                <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+                  <p className="lead fw-normal mb-0 me-3">Sign up with</p>
+                  <Button type="button" className="btn  btn-floating mx-1">
+                    <FaGoogle />
+                  </Button>
 
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control
-          name="email"
-          type="email"
-          placeholder="Enter email"
-          required
-        />
-      </Form.Group>
+                  <Button
+                    type="button"
+                    className="btn btn-secondary btn-floating mx-1"
+                  >
+                    <FaGithub />
+                  </Button>
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          name="password"
-          type="password"
-          placeholder="Password"
-          required
-        />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check
-          type="checkbox"
-          onClick={handleAccepted}
-          label={
-            <>
-              Accept <Link to="/terms">Terms and conditions</Link>
-            </>
-          }
-        />
-      </Form.Group>
-      <Button variant="primary" type="submit" disabled={!accepted}>
-        Register
-      </Button>
-      <Form.Text className="text-danger">{error}</Form.Text>
-    </Form>
+                  <Button type="button" className="btn   btn-floating mx-1">
+                    <FaFacebook />
+                  </Button>
+
+                  <Button
+                    type="button"
+                    className="btn btn-primary  btn-floating mx-1"
+                  >
+                    <FaTwitter />
+                  </Button>
+                </div>
+
+                <div className="divider d-flex align-items-center my-4">
+                  <p className="text-center fw-bold mx-3 mb-0">Or</p>
+                </div>
+
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group className="mb-3" controlId="formBasicName">
+                    <Form.Label>Your Name</Form.Label>
+                    <Form.Control
+                      name="name"
+                      type="text"
+                      placeholder="Your Name"
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Photo URL</Form.Label>
+                    <Form.Control
+                      name="photoURL"
+                      type="text"
+                      placeholder="Phot URL"
+                    />
+                  </Form.Group>
+
+                  <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control
+                      name="email"
+                      type="email"
+                      placeholder="Enter email"
+                      required
+                    />
+                  </Form.Group>
+
+                  <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      name="password"
+                      type="password"
+                      placeholder="Password"
+                      required
+                    />
+                  </Form.Group>
+
+                  <Button variant="primary" type="submit">
+                    Sign Up
+                  </Button>
+                  <Form.Text className="text-danger">{error}</Form.Text>
+                </Form>
+              </>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

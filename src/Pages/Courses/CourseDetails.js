@@ -36,11 +36,11 @@ const CourseDetails = () => {
               {author}
             </Card.Text>
             <div className=" row row-cols-auto ">
-              <di className=" mb-2 ">
+              <div className=" mb-2 ">
                 <Link to={`/category/`}>
                   <Button variant="outline-success">Download Book PDF</Button>
                 </Link>
-              </di>
+              </div>
               <div>
                 <Link to="/premiumAccess">
                   <Button variant="outline-warning">Get Premium Access</Button>
