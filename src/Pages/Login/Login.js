@@ -1,68 +1,74 @@
-import React from "react";
-import "./Login.css";
+import React, { useContext, useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import toast from "react-hot-toast";
+import { useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
+  const [error, setError] = useState("");
+  const { signIn, setLoading } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+        setError("");
+        if (user.emailVerified) {
+          navigate(from, { replace: true });
+        } else {
+          toast.error(
+            "Your email is not verified. Please verify your email address."
+          );
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        setError(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   return (
-    <div className="container">
-      <div className="form-box">
-        <div className="header-form">
-          <h4 className="text-primary text-center">
-            <i className="fa fa-user-circle" style={{ fontSize: "110px" }}></i>
-          </h4>
-          <div className="image"></div>
-        </div>
-        <div className="body-form">
-          <form>
-            <div className="input-group mb-3">
-              <div className="input-group-prepend">
-                <span className="input-group-text">
-                  <i class="fa fa-user"></i>
-                </span>
-              </div>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Username"
-              />
-            </div>
-            <div className="input-group mb-3">
-              <div className="input-group-prepend">
-                <span className="input-group-text">
-                  <i class="fa fa-lock"></i>
-                </span>
-              </div>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Password"
-              />
-            </div>
-            <button type="button" className="btn btn-secondary btn-block">
-              LOGIN
-            </button>
-            <div className="message">
-              <div>
-                <input type="checkbox" /> Remember ME
-              </div>
-              <div>
-                <a href="#">Forgot your password</a>
-              </div>
-            </div>
-          </form>
-          <div className="social">
-            <a href="#">
-              <i className="fab fa-facebook"></i>
-            </a>
-            <a href="#">
-              <i className="fab fa-twitter-square"></i>
-            </a>
-            <a href="#">
-              <i className="fab fa-google"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Email address</Form.Label>
+        <Form.Control
+          name="email"
+          type="email"
+          placeholder="Enter email"
+          required
+        />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control
+          name="password"
+          type="password"
+          placeholder="Password"
+          required
+        />
+      </Form.Group>
+
+      <Button variant="primary" type="submit">
+        Login
+      </Button>
+      <Form.Text className="text-danger">{error}</Form.Text>
+    </Form>
   );
 };
 
