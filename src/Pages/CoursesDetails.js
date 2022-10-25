@@ -1,9 +1,6 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
 
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { Row } from "react-bootstrap";
 
 const CoursesDetails = (props) => {
   console.log(props.course.name);
@@ -13,8 +10,13 @@ const CoursesDetails = (props) => {
       <Card style={{ width: "400px", margin: "15px" }}>
         <Card.Img style={{ height: "300px" }} variant="top" src={img} />
         <Card.Body>
-          <Card.Title>Course Title: {name}</Card.Title>
-          <Card.Title>Course Duration: {time}</Card.Title>
+          <Card.Title>
+            <span className="text-danger">Course Title: </span>
+            {name}
+          </Card.Title>
+          <Card.Title>
+            <span className="text-success">Course Duration:</span> {time}
+          </Card.Title>
         </Card.Body>
       </Card>
     </div>
