@@ -6,14 +6,55 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFacebook, FaGithub, FaGoogle, FaTwitter } from "react-icons/fa";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
+import {
+  FacebookAuthProvider,
+  GithubAuthProvider,
+  GoogleAuthProvider,
+} from "firebase/auth";
 
 const Login = () => {
   const [error, setError] = useState("");
-  const { signIn, setLoading } = useContext(AuthContext);
+  const { signIn, setLoading, providerLogin, setUser } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
   const from = location.state?.from?.pathname || "/";
+
+  const googleProvider = new GoogleAuthProvider();
+  const facebookProvider = new FacebookAuthProvider();
+  const githubProvider = new GithubAuthProvider();
+
+  const handleGoogleSignIn = () => {
+    providerLogin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        navigate(from, { replace: true });
+
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+  };
+  const handleFacebookSignIn = () => {
+    providerLogin(facebookProvider)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        navigate(from, { replace: true });
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+  };
+  const handleGitHubSignIn = () => {
+    providerLogin(githubProvider)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        navigate(from, { replace: true });
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -61,18 +102,27 @@ const Login = () => {
               <>
                 <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                   <p className="lead fw-normal mb-0 me-3">Sign in with</p>
-                  <Button type="button" className="btn  btn-floating mx-1">
+                  <Button
+                    onClick={handleGoogleSignIn}
+                    type="button"
+                    className="btn  btn-floating mx-1"
+                  >
                     <FaGoogle />
                   </Button>
 
                   <Button
+                    onClick={handleGitHubSignIn}
                     type="button"
                     className="btn btn-secondary btn-floating mx-1"
                   >
                     <FaGithub />
                   </Button>
 
-                  <Button type="button" className="btn   btn-floating mx-1">
+                  <Button
+                    onClick={handleFacebookSignIn}
+                    type="button"
+                    className="btn   btn-floating mx-1"
+                  >
                     <FaFacebook />
                   </Button>
 
@@ -109,29 +159,13 @@ const Login = () => {
                     />
                   </Form.Group>
 
-                  <Button variant="primary" type="submit">
+                  <Button className="mx-auto" variant="primary" type="submit">
                     Login
                   </Button>
+                  <br />
+
                   <Form.Text className="text-danger">{error}</Form.Text>
                 </Form>
-
-                <div className="d-flex justify-content-between align-items-center">
-                  {/* <!-- Checkbox --> */}
-                  <div className="form-check mb-0">
-                    <input
-                      className="form-check-input me-2"
-                      type="checkbox"
-                      value=""
-                      id="form2Example3"
-                    />
-                    <label className="form-check-label" htmlFor="form2Example3">
-                      Remember me
-                    </label>
-                  </div>
-                  <Link href="#!" className="text-body">
-                    Forgot password?
-                  </Link>
-                </div>
 
                 <div className="text-center text-lg-start mt-4 pt-2">
                   <p className="small fw-bold mt-2 pt-1 mb-0">

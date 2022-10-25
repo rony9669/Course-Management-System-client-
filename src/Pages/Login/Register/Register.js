@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
-import "../Login.css";
+import "./Register.css";
 import { Button, Image } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { FaFacebook, FaGithub, FaGoogle, FaTwitter } from "react-icons/fa";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [error, setError] = useState("");
@@ -72,33 +73,8 @@ const Register = () => {
             </div>
             <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
               <>
-                <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-                  <p className="lead fw-normal mb-0 me-3">Sign up with</p>
-                  <Button type="button" className="btn  btn-floating mx-1">
-                    <FaGoogle />
-                  </Button>
-
-                  <Button
-                    type="button"
-                    className="btn btn-secondary btn-floating mx-1"
-                  >
-                    <FaGithub />
-                  </Button>
-
-                  <Button type="button" className="btn   btn-floating mx-1">
-                    <FaFacebook />
-                  </Button>
-
-                  <Button
-                    type="button"
-                    className="btn btn-primary  btn-floating mx-1"
-                  >
-                    <FaTwitter />
-                  </Button>
-                </div>
-
                 <div className="divider d-flex align-items-center my-4">
-                  <p className="text-center fw-bold mx-3 mb-0">Or</p>
+                  <p className="text-center fw-bold mx-3 mb-0">Sign Up</p>
                 </div>
 
                 <Form onSubmit={handleSubmit}>
@@ -138,8 +114,19 @@ const Register = () => {
                       required
                     />
                   </Form.Group>
+                  <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                    <Form.Check
+                      type="checkbox"
+                      onClick={handleAccepted}
+                      label={
+                        <>
+                          Accept <Link to="/terms">Terms and conditions</Link>
+                        </>
+                      }
+                    />
+                  </Form.Group>
 
-                  <Button variant="primary" type="submit">
+                  <Button variant="primary" type="submit" disabled={!accepted}>
                     Sign Up
                   </Button>
                   <Form.Text className="text-danger">{error}</Form.Text>
