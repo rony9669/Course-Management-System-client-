@@ -3,7 +3,6 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 
 const CoursesDetails = (props) => {
-  console.log(props.course.name);
   const { name, img, time } = props.course;
   return (
     <div>

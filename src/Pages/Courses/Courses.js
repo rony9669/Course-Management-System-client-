@@ -18,7 +18,12 @@ const Courses = () => {
               <div key={course.id}>
                 <ListGroup className="mb-2 mt-2 text-decoration-none">
                   <ListGroup.Item>
-                    <Link className=" text-decoration-none">{course.name}</Link>
+                    <Link
+                      to={`/courseDetails/${course.id}`}
+                      className=" text-decoration-none"
+                    >
+                      {course.name}
+                    </Link>
                   </ListGroup.Item>
                 </ListGroup>
               </div>
