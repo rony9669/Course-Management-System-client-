@@ -7,16 +7,20 @@ import { Container, Row } from "react-bootstrap";
 const CourseDetails = () => {
   const details = useLoaderData();
   console.log(details);
-  const { name, img, description, credit, author, book, id } = details[0];
+  const { name, img, description, credit, author, book, id, download_link } =
+    details[0];
   return (
     <Container>
       <Row>
         <Card className="mx-auto" style={{ width: "800px", margin: "25px" }}>
           <div className="row row-cols-auto ">
             <div className=" mb-2 justify-content-end">
-              <Link to={`/category/`}>
+              <a href={download_link} target="_blank" rel="noreferrer" download>
                 <Button variant="outline-success">Download Book PDF</Button>
-              </Link>
+              </a>
+              {/* <Link to={download_link}>
+                <Button variant="outline-success">Download Book PDF</Button>
+              </Link> */}
             </div>
             <Card.Title className=" mx-5  mb-2">
               <span className=" text-primary font-bolder">Title:</span>
