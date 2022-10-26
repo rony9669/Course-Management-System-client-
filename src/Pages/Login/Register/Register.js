@@ -2,14 +2,12 @@ import React, { useContext, useState } from "react";
 import "./Register.css";
 import { Button, Image } from "react-bootstrap";
 import { Form } from "react-bootstrap";
-import { FaFacebook, FaGithub, FaGoogle, FaTwitter } from "react-icons/fa";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 const Register = () => {
   const [error, setError] = useState("");
-  const [accepted, setAccepted] = useState(false);
   const { createUser, updateUserProfile, verifyEmail } =
     useContext(AuthContext);
 
@@ -101,7 +99,7 @@ const Register = () => {
                     />
                   </Form.Group>
 
-                  <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Group className="mb-2" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
                       name="password"
@@ -116,6 +114,14 @@ const Register = () => {
                   </Button>
                   <Form.Text className="text-danger">{error}</Form.Text>
                 </Form>
+                <div className="text-center text-lg-start mt-4 pt-2 mb-2">
+                  <p className="small fw-bold mb-0 me-1">
+                    Do you have an account?
+                    <Link to="/login" className=" ms-1 link-danger">
+                      Login
+                    </Link>
+                  </p>
+                </div>
               </>
             </div>
           </div>

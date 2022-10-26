@@ -55,7 +55,7 @@ const Header = () => {
             <InputGroup>
               <ThemeContext.Consumer>
                 {({ changeTheme }) => (
-                  <label class="switch">
+                  <label className="switch">
                     <input
                       color="link"
                       onClick={() => {

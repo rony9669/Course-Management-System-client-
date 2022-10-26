@@ -5,7 +5,8 @@ import { Form } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
-import toast from "react-hot-toast";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   FacebookAuthProvider,
   GithubAuthProvider,
@@ -70,6 +71,8 @@ const Login = () => {
         form.reset();
         setError("");
         if (user.emailVerified) {
+          toast.success("Login Successful!");
+          setUser(user);
           navigate(from, { replace: true });
         } else {
           toast.error(
@@ -151,10 +154,28 @@ const Login = () => {
                       required
                     />
                   </Form.Group>
-
-                  <Button className="mx-auto" variant="primary" type="submit">
-                    Login
-                  </Button>
+                  <div>
+                    <Button
+                      to={handleSubmit}
+                      className="mx-auto"
+                      variant="primary"
+                      type="submit"
+                    >
+                      Login
+                    </Button>
+                    <ToastContainer
+                      position="top-center"
+                      autoClose={2000}
+                      hideProgressBar={false}
+                      newestOnTop={false}
+                      closeOnClick
+                      rtl={false}
+                      pauseOnFocusLoss
+                      draggable
+                      pauseOnHover
+                      theme="light"
+                    />
+                  </div>
                   <br />
 
                   <Form.Text className="text-danger">{error}</Form.Text>
@@ -163,7 +184,7 @@ const Login = () => {
                 <div className="text-center text-lg-start mt-4 pt-2">
                   <p className="small fw-bold mt-2 pt-1 mb-0">
                     Don't have an account?
-                    <Link to="/register" className="link-danger">
+                    <Link to="/register" className="ms-1 link-danger">
                       Register
                     </Link>
                   </p>

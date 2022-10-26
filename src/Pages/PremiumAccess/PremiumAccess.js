@@ -1,9 +1,10 @@
 import React from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useLoaderData } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Container, Row } from "react-bootstrap";
-import toast from "react-hot-toast";
 
 const PremiumAccess = () => {
   const details = useLoaderData();
@@ -11,7 +12,7 @@ const PremiumAccess = () => {
   const { name, id, price } = details[0];
 
   const handleBuyNow = () => {
-    toast.success("Thank for purchasing");
+    toast("Thank You For Purchasing!");
   };
   return (
     <Container>
@@ -32,12 +33,22 @@ const PremiumAccess = () => {
               {" "}
               <span className="text-success">Course Amount: </span> {price}
             </Card.Text>
-            <div className=" mx-auto " >
-              
-                <Button onClick={handleBuyNow} variant="outline-warning">
-                  Buy Now
-                </Button>
-              
+            <div className=" mx-auto ">
+              <Button onClick={handleBuyNow} variant="outline-warning">
+                Buy Now
+              </Button>
+              <ToastContainer
+                position="top-center"
+                autoClose={1000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+              />
             </div>
           </Card.Body>
         </Card>
