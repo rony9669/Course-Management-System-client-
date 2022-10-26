@@ -9,10 +9,10 @@ const Courses = () => {
   //   console.log(courses.name);
 
   return (
-    <div>
+    <div className="mb-5">
       <Container>
         <Row>
-          <Col>
+          <Col md="3">
             <h5 className="text-center mt-2 text-bold ">Course Details</h5>
             {courses.map((course) => (
               <div key={course.id}>
@@ -29,9 +29,9 @@ const Courses = () => {
               </div>
             ))}
           </Col>
-          <Col>
+          <Col md="9">
             <h3 className="text-center">Courses</h3>
-            <div className="grid-system">
+            <div className="details row row-cols-sm-1 row-cols-md-2 row-cols-lg-2 ">
               {courses.map((course) => (
                 <CoursesDetails
                   key={course.id}

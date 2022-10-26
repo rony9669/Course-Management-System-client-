@@ -6,7 +6,7 @@ const CoursesDetails = (props) => {
   const { name, img, time } = props.course;
   return (
     <div>
-      <Card style={{ width: "400px", margin: "15px" }}>
+      <Card style={{ height: "450px" }}>
         <Card.Img style={{ height: "300px" }} variant="top" src={img} />
         <Card.Body>
           <Card.Title>
