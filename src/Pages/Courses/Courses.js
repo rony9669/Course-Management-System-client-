@@ -1,8 +1,8 @@
 import React from "react";
 import { Col, Container, ListGroup, Row } from "react-bootstrap";
 import { Link, useLoaderData } from "react-router-dom";
-import CoursesDetails from "../CoursesDetails";
 import "./Courses.css";
+import CoursesDetails from "./CoursesDetails";
 
 const Courses = () => {
   const courses = useLoaderData();

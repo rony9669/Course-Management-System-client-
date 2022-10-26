@@ -4,7 +4,6 @@ import { Button, Image } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
-import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -12,6 +11,7 @@ import {
   GithubAuthProvider,
   GoogleAuthProvider,
 } from "firebase/auth";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
   const [error, setError] = useState("");
@@ -30,6 +30,7 @@ const Login = () => {
     providerLogin(googleProvider)
       .then((result) => {
         const user = result.user;
+        setUser(user);
         navigate(from, { replace: true });
 
         console.log(user);

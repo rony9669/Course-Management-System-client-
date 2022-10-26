@@ -4,7 +4,7 @@ import Image from "react-bootstrap/Image";
 import "./Home.css";
 import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
-import ContactUs from "./ContactUs";
+import Footer from "../Shared/Footer/Footer";
 
 const Home = () => {
   return (
@@ -76,7 +76,7 @@ const Home = () => {
             </Card.Body>
           </Card>
         </CardGroup>
-        <ContactUs></ContactUs>
+        <Footer></Footer>
       </Row>
     </Container>
   );
