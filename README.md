@@ -1,3 +1,33 @@
+---
+
+# Project Title: Computer Engineering
+
+## Live website link: https://computer-science-departm-bc581.web.app
+
+#
+
+## Features
+
+- Light/dark mode toggle
+- Responsive
+- Dynamic Website
+- Registration
+- Login
+- Private Route
+- Email 📧 verification
+- PDF Downloading System
+- Blog
+- FAQ Page
+
+#
+
+## Technologies
+
+- React js
+- React Bootstrap
+
+#
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
