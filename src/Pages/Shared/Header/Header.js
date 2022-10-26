@@ -57,7 +57,7 @@ const Header = () => {
                     className="me-4 mb-2 ms-sm-5"
                     style={{ height: "40px", width: "45px" }}
                     roundedCircle
-                    src={user?.photoURL ? user?.photoURL : <FaUser></FaUser>}
+                    src={user?.photoURL ? user.photoURL : <FaUser></FaUser>}
                   ></Image>
                   <Button variant="light" onClick={handleLogOut}>
                     Log out
