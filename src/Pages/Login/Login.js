@@ -3,7 +3,7 @@ import "./Login.css";
 import { Button, Image } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaFacebook, FaGithub, FaGoogle, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaGithub, FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import {
@@ -124,13 +124,6 @@ const Login = () => {
                     className="btn   btn-floating mx-1"
                   >
                     <FaFacebook />
-                  </Button>
-
-                  <Button
-                    type="button"
-                    className="btn btn-primary  btn-floating mx-1"
-                  >
-                    <FaTwitter />
                   </Button>
                 </div>
 

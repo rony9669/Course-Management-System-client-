@@ -5,14 +5,17 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AuthProvider from "./contexts/AuthProvider/AuthProvider";
+import ThemeContextWrapper from "./Theme/ThemeWrapper";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
-  </React.StrictMode>
+  <ThemeContextWrapper>
+    <React.StrictMode>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </React.StrictMode>
+  </ThemeContextWrapper>
 );
 
 // If you want to start measuring performance in your app, pass a function

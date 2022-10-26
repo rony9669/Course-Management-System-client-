@@ -1,14 +1,20 @@
 import React, { useContext } from "react";
-import { Button, Image } from "react-bootstrap";
+import "./Header.css";
+import { Button, Image, InputGroup, Tooltip } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import {
+  ThemeContext,
+  themes,
+} from "../../../contexts/AuthProvider/ThemeContext";
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
   console.log(user);
+  const [darkMode, setDarkMode] = React.useState(true);
 
   const handleLogOut = () => {
     logOut()
@@ -26,7 +32,7 @@ const Header = () => {
             height="35"
             className="d-inline-block align-top me-1"
           />
-          Computer Science & Engineering
+          Computer Engineering
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -46,7 +52,25 @@ const Header = () => {
             <Link className="text-decoration-none me-2 text-light" to="/FAQ">
               FAQ
             </Link>
-            {/* <Link href="#pr">Theme</Link> */}
+            <InputGroup>
+              <ThemeContext.Consumer>
+                {({ changeTheme }) => (
+                  <label class="switch">
+                    <input
+                      color="link"
+                      onClick={() => {
+                        setDarkMode(!darkMode);
+                        changeTheme(darkMode ? themes.light : themes.dark);
+                      }}
+                      type="checkbox"
+                    />
+                    <span className="slider round "></span>
+                    {/* <span className={`slider round${darkMode ? <FaSun /> : <FaMoon />}`}></span>
+                    <span className="d-lg-none d-md-block">Switch mode</span> */}
+                  </label>
+                )}
+              </ThemeContext.Consumer>
+            </InputGroup>
           </Nav>
           <Nav>
             <>
@@ -54,7 +78,7 @@ const Header = () => {
                 <>
                   <Image
                     title={user?.displayName}
-                    className="me-4 mb-2 ms-sm-5"
+                    className="me-4 mt-2 mb-2"
                     style={{ height: "40px", width: "45px" }}
                     roundedCircle
                     src={user?.photoURL ? user.photoURL : <FaUser></FaUser>}

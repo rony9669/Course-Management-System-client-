@@ -55,10 +55,6 @@ const Register = () => {
       .catch((error) => console.error(error));
   };
 
-  const handleAccepted = (event) => {
-    setAccepted(event.target.checked);
-  };
-
   return (
     <div>
       <div className="vh-100">
@@ -114,19 +110,8 @@ const Register = () => {
                       required
                     />
                   </Form.Group>
-                  <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check
-                      type="checkbox"
-                      onClick={handleAccepted}
-                      label={
-                        <>
-                          Accept <Link to="/terms">Terms and conditions</Link>
-                        </>
-                      }
-                    />
-                  </Form.Group>
 
-                  <Button variant="primary" type="submit" disabled={!accepted}>
+                  <Button variant="primary" type="submit">
                     Sign Up
                   </Button>
                   <Form.Text className="text-danger">{error}</Form.Text>
