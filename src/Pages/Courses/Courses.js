@@ -6,7 +6,6 @@ import CoursesDetails from "./CoursesDetails";
 
 const Courses = () => {
   const courses = useLoaderData();
-  //   console.log(courses.name);
 
   return (
     <div className="mb-5">

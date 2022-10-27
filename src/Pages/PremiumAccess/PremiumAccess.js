@@ -8,7 +8,7 @@ import { Container, Row } from "react-bootstrap";
 
 const PremiumAccess = () => {
   const details = useLoaderData();
-  console.log(details);
+
   const { name, id, price } = details[0];
 
   const handleBuyNow = () => {

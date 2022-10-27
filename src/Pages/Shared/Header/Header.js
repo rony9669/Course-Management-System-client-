@@ -13,7 +13,7 @@ import {
 } from "../../../contexts/AuthProvider/ThemeContext";
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
-  console.log(user);
+
   const [darkMode, setDarkMode] = React.useState(true);
 
   const handleLogOut = () => {
@@ -65,8 +65,6 @@ const Header = () => {
                       type="checkbox"
                     />
                     <span className="slider round "></span>
-                    {/* <span className={`slider round${darkMode ? <FaSun /> : <FaMoon />}`}></span>
-                    <span className="d-lg-none d-md-block">Switch mode</span> */}
                   </label>
                 )}
               </ThemeContext.Consumer>
