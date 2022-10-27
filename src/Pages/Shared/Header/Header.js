@@ -86,21 +86,29 @@ const Header = () => {
                     ) : (
                       <FaUser
                         title={user?.displayName}
-                        className="text-info me-4 mt-2 mb-2"
+                        className="text-info fs-2 me-4 mt-2 mb-2"
                       ></FaUser>
                     )}
                   </>
 
-                  <Button variant="light" onClick={handleLogOut}>
+                  <Link className="btn btn-light m-2" onClick={handleLogOut}>
                     Log out
-                  </Button>
+                  </Link>
                 </>
               ) : (
                 <>
-                  <Link to="/login" className="btn btn-primary m-2">
+                  <Link
+                    to="/login"
+                    className="btn btn-outline-info fw-bold m-2"
+                  >
                     Login
                   </Link>
-                  {/* <FaUser className="text-info"></FaUser> */}
+                  <Link
+                    to="/register"
+                    className="btn btn-outline-info fw-bold m-2"
+                  >
+                    Registration
+                  </Link>
                 </>
               )}
             </>

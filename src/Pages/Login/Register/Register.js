@@ -3,7 +3,8 @@ import "./Register.css";
 import { Button, Image } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
-import toast from "react-hot-toast";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 
 const Register = () => {
@@ -27,11 +28,13 @@ const Register = () => {
         form.reset();
         handleUpdateUserProfile(name, photoURL);
         handleEmailVerification();
-        toast.success("Please verify your email address.");
+        toast.success(
+          " SignUp successful !!!.Please verify your email address before login."
+        );
       })
-      .catch((e) => {
-        console.error(e);
-        setError(e.message);
+      .catch((error) => {
+        // console.error(e);
+        setError(error.message);
       });
   };
 
@@ -43,13 +46,17 @@ const Register = () => {
 
     updateUserProfile(profile)
       .then(() => {})
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        setError(error.message);
+      });
   };
 
   const handleEmailVerification = () => {
     verifyEmail()
       .then(() => {})
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        setError(error.message);
+      });
   };
 
   return (
@@ -76,7 +83,7 @@ const Register = () => {
                     <Form.Control
                       name="name"
                       type="text"
-                      placeholder="Your Name"
+                      placeholder="Your name"
                     />
                   </Form.Group>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -84,7 +91,7 @@ const Register = () => {
                     <Form.Control
                       name="photoURL"
                       type="text"
-                      placeholder="Phot URL"
+                      placeholder="Photo URL"
                     />
                   </Form.Group>
 
@@ -107,16 +114,29 @@ const Register = () => {
                       required
                     />
                   </Form.Group>
-
-                  <Button variant="primary" type="submit">
-                    Sign Up
-                  </Button>
+                  <div>
+                    <Button variant="primary" type="submit">
+                      Sign Up
+                    </Button>
+                    <ToastContainer
+                      position="top-center"
+                      autoClose={2000}
+                      hideProgressBar={false}
+                      newestOnTop={false}
+                      closeOnClick
+                      rtl={false}
+                      pauseOnFocusLoss
+                      draggable
+                      pauseOnHover
+                      theme="light"
+                    />
+                  </div>
                   <Form.Text className="text-danger">{error}</Form.Text>
                 </Form>
-                <div className="text-center text-lg-start mt-4 pt-2 mb-2">
+                <div className="text-center text-lg-start mt-3  mb-2">
                   <p className="small fw-bold mb-0 me-1">
                     Do you have an account?
-                    <Link to="/login" className=" ms-1 link-danger">
+                    <Link to="/login" className="ms-1 btn btn-outline-danger">
                       Login
                     </Link>
                   </p>

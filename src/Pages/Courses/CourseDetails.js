@@ -15,12 +15,15 @@ const CourseDetails = () => {
         <Card className="mx-auto" style={{ width: "800px", margin: "25px" }}>
           <div className="row row-cols-auto ">
             <div className=" mb-2 justify-content-end">
-              <a href={download_link} target="_blank" rel="noreferrer" download>
-                <Button variant="outline-success">Download Book PDF</Button>
+              <a
+                className="btn btn-success "
+                href={download_link}
+                target="_blank"
+                rel="noreferrer"
+                download
+              >
+                Download Book PDF
               </a>
-              {/* <Link to={download_link}>
-                <Button variant="outline-success">Download Book PDF</Button>
-              </Link> */}
             </div>
             <Card.Title className=" mx-5  mb-2">
               <span className=" text-primary font-bolder">Title:</span>
@@ -47,13 +50,10 @@ const CourseDetails = () => {
               <span className="text-danger">Book Author: </span>
               {author}
             </Card.Text>
-            <div className=" row row-cols-auto ">
-              <div>
-                <Link to={`/checkout/${id}`}>
-                  <Button variant="outline-warning">Get Premium Access</Button>
-                </Link>
-              </div>
-            </div>
+
+            <Link to={`/checkout/${id}`} className="btn btn-danger ">
+              Get Premium Access
+            </Link>
           </Card.Body>
         </Card>
       </Row>

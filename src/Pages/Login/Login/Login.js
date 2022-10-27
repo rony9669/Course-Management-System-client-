@@ -30,31 +30,39 @@ const Login = () => {
     providerLogin(googleProvider)
       .then((result) => {
         const user = result.user;
-        setUser(user);
         navigate(from, { replace: true });
+        setUser(user);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        setError(error.message);
+      });
   };
   const handleFacebookSignIn = () => {
     providerLogin(facebookProvider)
       .then((result) => {
         const user = result.user;
-        setUser(user);
         navigate(from, { replace: true });
+        setUser(user);
+        // console.log(user);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        setError(error.message);
+      });
   };
   const handleGitHubSignIn = () => {
     providerLogin(githubProvider)
       .then((result) => {
         const user = result.user;
+        navigate(from, { replace: true }); //up
         setUser(user);
-        navigate(from, { replace: true });
+        // console.log(user);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        setError(error.message);
+      });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmitLogin = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
@@ -120,7 +128,7 @@ const Login = () => {
                   <Button
                     onClick={handleFacebookSignIn}
                     type="button"
-                    className="btn   btn-floating mx-1"
+                    className="btn btn-floating mx-1"
                   >
                     <FaFacebook />
                   </Button>
@@ -130,7 +138,7 @@ const Login = () => {
                   <p className="text-center fw-bold mx-3 mb-0">Or</p>
                 </div>
 
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmitLogin}>
                   <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control
@@ -152,7 +160,7 @@ const Login = () => {
                   </Form.Group>
                   <div>
                     <Button
-                      to={handleSubmit}
+                      // to={handleSubmitLogin}
                       className="mx-auto"
                       variant="primary"
                       type="submit"
@@ -180,7 +188,10 @@ const Login = () => {
                 <div className="text-center text-lg-start mt-4 pt-2">
                   <p className="small fw-bold mt-2 pt-1 mb-0">
                     Don't have an account?
-                    <Link to="/register" className="ms-1 link-danger">
+                    <Link
+                      to="/register"
+                      className="ms-1 btn btn-outline-success"
+                    >
                       Register
                     </Link>
                   </p>
