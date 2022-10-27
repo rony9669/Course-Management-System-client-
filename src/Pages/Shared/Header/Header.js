@@ -76,13 +76,23 @@ const Header = () => {
             <>
               {user?.uid ? (
                 <>
-                  <Image
-                    title={user?.displayName}
-                    className="me-4 mt-2 mb-2"
-                    style={{ height: "40px", width: "45px" }}
-                    roundedCircle
-                    src={user?.photoURL ? user.photoURL : <FaUser></FaUser>}
-                  ></Image>
+                  <>
+                    {user?.photoURL ? (
+                      <Image
+                        title={user?.displayName}
+                        style={{ height: "40px", width: "40px" }}
+                        className="me-4 mt-2 mb-2"
+                        roundedCircle
+                        src={user?.photoURL}
+                      ></Image>
+                    ) : (
+                      <FaUser
+                        title={user?.displayName}
+                        className="text-info me-4 mt-2 mb-2"
+                      ></FaUser>
+                    )}
+                  </>
+
                   <Button variant="light" onClick={handleLogOut}>
                     Log out
                   </Button>
@@ -92,6 +102,7 @@ const Header = () => {
                   <Link to="/login" className="btn btn-primary m-2">
                     Login
                   </Link>
+                  {/* <FaUser className="text-info"></FaUser> */}
                 </>
               )}
             </>
