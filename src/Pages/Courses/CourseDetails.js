@@ -6,7 +6,7 @@ import { Container, Row } from "react-bootstrap";
 
 const CourseDetails = () => {
   const details = useLoaderData();
-  console.log(details);
+
   const { name, img, description, credit, author, book, id, download_link } =
     details[0];
   return (
